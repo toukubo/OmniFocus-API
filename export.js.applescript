@@ -11,15 +11,16 @@ function getProjects() {
   allProjects.forEach(function(item) {
     info = {};
     info.name = item.name();
+    console.log("info.name ")
+    console.log(info.name)
+
     info.container = item.container().name();
     if (typeof item.folder() === 'function') {
       info.folder = item.folder().name();
     }
     info.singletonActionHolder = item.singletonActionHolder();
     info.sequential  = item.sequential();
-		if (typeof item.context() === 'function') {
-			info.context = item.context().name();
-		}
+
     info.id = item.id();
     info.link = "omnifocus:///item/" + item.id();
     info.note = item.note();
@@ -48,17 +49,17 @@ function getTasks() {
     if (task.container().name() !== 'OmniFocus') {
       info = {};
       info.name = task.name();
-      info.context = task.context.name();
-      info.contextID = task.context.id();
+      //info.context = task.tag.name();
+      // info.contextID = task.context.id();
       info.container = task.container().name();
       info.containerID = task.container().id();
       info.containingProject = task.containingProject().name();
-      
+
       //if (typeof x === 'function') {
       info.parentTask = task.parentTask();
       //}
       info.subTask = (info.container !== info.containingProject);
-      
+
       info.id = task.id();
       info.link = "omnifocus:///task/" + task.id();
       info.note = task.note();
@@ -73,7 +74,7 @@ function getTasks() {
       info.numberOfTasks = task.numberOfTasks();
       info.numberOfAvailableTasks = task.numberOfAvailableTasks();
       info.repetitionRule = task.repetitionRule();
-  
+
       results.push(info);
     }
   });
